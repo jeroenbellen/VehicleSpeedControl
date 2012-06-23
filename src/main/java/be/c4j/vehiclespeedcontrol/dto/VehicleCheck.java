@@ -1,4 +1,4 @@
-package be.c4j.trajectcontrole.dto;
+package be.c4j.vehiclespeedcontrol.dto;
 
 import java.io.Serializable;
 import java.util.Date;

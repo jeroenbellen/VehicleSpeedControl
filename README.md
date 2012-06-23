@@ -1,4 +1,5 @@
 VehicleSpeedControl
 ===================
 
-Memcached example lab
+Memcached lab
+

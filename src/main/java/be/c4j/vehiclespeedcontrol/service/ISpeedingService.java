@@ -1,8 +1,8 @@
-package be.c4j.trajectcontrole.service;
+package be.c4j.vehiclespeedcontrol.service;
 
-import be.c4j.trajectcontrole.dto.Average;
-import be.c4j.trajectcontrole.dto.Total;
-import be.c4j.trajectcontrole.dto.VehicleCheck;
+import be.c4j.vehiclespeedcontrol.dto.Average;
+import be.c4j.vehiclespeedcontrol.dto.Total;
+import be.c4j.vehiclespeedcontrol.dto.VehicleCheck;
 
 import java.util.List;
 

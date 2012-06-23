@@ -1,7 +1,7 @@
-package be.c4j.trajectcontrole.repository;
+package be.c4j.vehiclespeedcontrol.repository;
 
-import be.c4j.trajectcontrole.dto.Average;
-import be.c4j.trajectcontrole.dto.VehicleCheck;
+import be.c4j.vehiclespeedcontrol.dto.Average;
+import be.c4j.vehiclespeedcontrol.dto.VehicleCheck;
 import org.springframework.stereotype.Repository;
 
 import java.io.BufferedReader;

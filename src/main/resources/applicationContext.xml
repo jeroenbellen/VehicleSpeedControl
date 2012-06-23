@@ -5,7 +5,7 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 
     <context:annotation-config/>
-    <context:component-scan base-package="be.c4j.trajectcontrole"/>
+    <context:component-scan base-package="be.c4j.vehiclespeedcontrol"/>
 
     <bean name="memcachedClientBuilder" class="net.rubyeye.xmemcached.XMemcachedClientBuilder">
         <constructor-arg name="addressList">

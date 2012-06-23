@@ -1,9 +1,9 @@
-package be.c4j.trajectcontrole.service;
+package be.c4j.vehiclespeedcontrol.service;
 
-import be.c4j.trajectcontrole.dto.Average;
-import be.c4j.trajectcontrole.dto.Total;
-import be.c4j.trajectcontrole.dto.VehicleCheck;
-import be.c4j.trajectcontrole.repository.VehicleCheckRepository;
+import be.c4j.vehiclespeedcontrol.dto.Average;
+import be.c4j.vehiclespeedcontrol.dto.Total;
+import be.c4j.vehiclespeedcontrol.dto.VehicleCheck;
+import be.c4j.vehiclespeedcontrol.repository.VehicleCheckRepository;
 import net.rubyeye.xmemcached.MemcachedClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
