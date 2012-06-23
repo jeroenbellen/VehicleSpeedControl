@@ -4,14 +4,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>Tracjectcontrole</groupId>
-    <artifactId>Tracjectcontrole</artifactId>
+    <groupId>be.c4j</groupId>
+    <artifactId>vehicleSpeedControl</artifactId>
     <version>1.0</version>
     <packaging>war</packaging>
 
 
     <build>
-        <finalName>trajectControle</finalName>
+        <finalName>vehicleSpeedControl</finalName>
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
@@ -33,11 +33,6 @@
 
 
         <!-- Spring -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-core</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
