@@ -11,10 +11,10 @@ One should assume that we are working with a very old slow database system contr
 The repository contains data on a weekly basis. The web service only shows statistics about the last week.
 
 ### 1: Start the application
-Open up this project inside your favorite Java IDE and deploy the web application. I used [IntelliJ](http://www.jetbrains.com/idea/) and Tomcat 6. If you browse to [http://localhost:8080/](http://localhost:8080/) you should see a basic html page containing some links to the JSON web-service. Try out a few links and you immidialty see the problem, it's painfully slow! Don't (yet) click on the links to the Non-Offenders statistics.  
+Open up this project inside your favorite Java IDE and deploy the web application. I used [IntelliJ](http://www.jetbrains.com/idea/) and Tomcat 6. If you browse to [http://localhost:8080/](http://localhost:8080/) you should see a basic html page containing some links to the JSON web-service. Try out a few links and you immediately see the problem, it's painfully slow! Don't (yet) click on the links to the Non-Offenders statistics.
 
 ### 2: Non-Deterministic caching
-Open the "SpeedingService" class and search for the "getTotal". You see there's basicly no logic inside, it's just a passthrough from our repository. This is an ideal place to do some caching! For this method we are going to use the Non-Deterministic caching strategy. In a nutchel: chech the cach if we have the required info, if not fetch it and store it and return the info.
+Open the "SpeedingService" class and search for the "getTotal". You see there's basically no logic inside, it's just a pass-through from our repository. This is an ideal place to do some caching! For this method we are going to use the Non-Deterministic caching strategy. In a nutshell: check the cache if we have the required info, if not fetch it, store it and return the info.
 Change the "getTotal" method to:
 
     @Override
@@ -37,8 +37,8 @@ As you can see this is far from rocked science! Go ahead and redeploy the applic
 
 ### 3: Exercises on Deterministic caching
 The statistics about the Non-Offenders is even slower! It's to slow to shove of the waiting duty to our first user. 
-We now that our slow database gets updated Sunday night, so why don't we precache the data? This is called deterministic caching.
-Go ahead and have a look at the "buildDeterministicCache" method, it has some strange annotations on it, all you need to know is that this method gets ran automatically ones a week(Sunday midnight). The logic inside should ring a bell, the only difference is we are only storing the data. If you go to the "getTotalNonOffenders" method, you'll see that there's only a link to our cache.  Rather then deploying our app and continue on the next monday, uncomment TODO 5. The "PostConstruct" annotation will run this method on startup. Now redeploy! You notice that it takes way longer to deploy, when it's done go ahead and open [http://localhost:8080/rest/speedcontrol/nonoffenders/total](http://localhost:8080/rest/speedcontrol/nonoffenders/total). Immediate response! You may continue by implementing TODO 6.
+We now that our slow database gets updated Sunday night, so why don't we pre cache the data? This is called deterministic caching.
+Go ahead and have a look at the "buildDeterministicCache" method, it has some strange annotations on it, all you need to know is that this method gets ran automatically ones a week(Sunday midnight). The logic inside should ring a bell, the only difference is we are only storing the data. If you go to the "getTotalNonOffenders" method, you'll see that there's only a link to our cache.  Rather then deploying our app and continue on the next monday, uncomment TODO 5. The "PostConstruct" annotation will run this method on startup. Now redeploy! You'll notice that it takes way longer to deploy, when it's done go ahead and open [http://localhost:8080/rest/speedcontrol/nonoffenders/total](http://localhost:8080/rest/speedcontrol/nonoffenders/total). Immediate response! You may continue by implementing TODO 6.
 
 ### 4: Extra
 + Try to write a method that flushes all the Non-Deterministic data from the cache and call this method inside a weekly scheduled job.
