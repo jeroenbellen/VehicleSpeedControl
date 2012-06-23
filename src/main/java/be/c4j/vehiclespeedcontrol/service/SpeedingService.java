@@ -10,6 +10,7 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
 
 /**
@@ -43,18 +44,7 @@ public class SpeedingService implements ISpeedingService {
 
     @Override
     public Total getTotal() {
-        Total total;
-        try {
-            total = memcachedClient.get(MEMCACHED_KEYS.TOTAL_TOTAL.toString());   // Get value out from memcached
-            if (total == null) {    // If total is not in the cache, get if from the database and cache it
-                total = new Total((long) slowDatabaseRepository.getAllVehicles().size());
-                memcachedClient.set(MEMCACHED_KEYS.TOTAL_TOTAL.toString(), 0, total);
-            }
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-
-        return total;
+        return new Total((long) slowDatabaseRepository.getAllVehicles().size());
     }
 
     @Override
@@ -86,7 +76,6 @@ public class SpeedingService implements ISpeedingService {
 
     @Scheduled(cron = "0 0 * * 0")  // Weekly job --> Sunday at midnight
     //TODO 5: Uncomment @PostConstruct                  // Run this method on startup
-    @Async
     public void buildDeterministicCache() {
         final List<VehicleCheck> vehicles = slowDatabaseRepository.getAllVehicles();
         vehicles.removeAll(slowDatabaseRepository.getAllSpeedingVehicles());
@@ -114,3 +103,25 @@ public class SpeedingService implements ISpeedingService {
         return slowDatabaseRepository.getNonSpeedingAverage();
     }
 }
+
+
+
+
+/*  Shameless sheet
+    @Override
+    public Total getTotal() {
+        Total total;
+        try {
+            total = memcachedClient.get(MEMCACHED_KEYS.TOTAL_TOTAL.toString());   // Get value out from memcached
+            if (total == null) {    // If total is not in the cache, get if from the database and cache it
+                total = new Total((long) slowDatabaseRepository.getAllVehicles().size());
+                memcachedClient.set(MEMCACHED_KEYS.TOTAL_TOTAL.toString(), 0, total);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        return total;
+    }
+
+*/
